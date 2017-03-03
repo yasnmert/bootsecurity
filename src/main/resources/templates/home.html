@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Registration Form</title>
+
+
+
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/registration.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<form th:action="@{/logout}" method="get">
+		<button class="btn btn-md btn-danger btn-block" name="registration"
+			type="Submit">LOG OUT</button>
+	</form>
+	<div th:if="${control == 'ADMIN'}">
+		<div role="navigation">
+			<div class="navbar navbar-inverse">
+				<a href="/home" class="navbar-brand">Home Page</a>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a th:href="@{/admin/roles/new}">Yeni Personel Tipi</a></li>
+						<li><a th:href="@{/admin/roles/all}">Tüm Personel Tipleri</a></li>
+						<li><a th:href="@{/personels/all}">Tüm Personeller </a></li>
+						<li><a th:href="@{/admin/tasks/new}">Yeni Görev </a></li>
+						<li><a th:href="@{/admin/tasks/all}">Tüm Görevler </a></li>
+						<li><a th:href="@{/admin/personel-task/new}">Personele
+								Göre Ata </a></li>
+						<li><a th:href="@{/admin/personel-task/all}">Personel
+								Görevleri </a></li>
+						<li><a th:href="@{/myprofile/inf}">PROFİLİM </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:if="${control == 'USER'}">
+		<div role="navigation">
+			<div class="navbar navbar-inverse">
+				<a href="/home" class="navbar-brand">Home Page</a>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a th:href="@{/personels/all}">Tüm Personeller </a></li>
+						<li><a th:href="@{/myprofile/inf}">PROFİLİM </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-2 text-left">
+			<form th:action="@{/admin/home}" method="get">
+				<button class="btn btn-md btn-danger btn-block" name="admin"
+					type="Submit">ADMIN PAGE</button>
+			</form>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-2 text-left">
+			<form th:action="@{/user/home}" method="get">
+				<button class="btn btn-md btn-danger btn-block" name="user"
+					type="Submit">USER PAGE</button>
+			</form>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-2 text-left">
+			<form th:action="@{/myprofile/inf}" method="get">
+				<button class="btn btn-md btn-danger btn-block" name="user"
+					type="Submit">PROFILE</button>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

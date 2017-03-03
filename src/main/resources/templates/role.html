@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>GÖREVLER</title>
+
+
+
+
+<link href="/css/bootselect.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+
+
+</head>
+<body>
+	<form th:action="@{/logout}" method="get">
+		<button class="btn btn-md btn-danger btn-block" name="registration"
+			type="Submit">LOG OUT</button>
+	</form>
+
+	<div role="navigation">
+		<div class="navbar navbar-inverse">
+			<a href="/home" class="navbar-brand">Home Page</a>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/admin/roles/new}">Yeni Personel Tipi</a></li>
+					<li><a th:href="@{/admin/roles/all}">Tüm Personel Tipleri</a></li>
+					<li><a th:href="@{/personels/all}">Tüm Personeller </a></li>
+					<li><a th:href="@{/admin/tasks/new}">Yeni Görev </a></li>
+					<li><a th:href="@{/admin/tasks/all}">Tüm Görevler </a></li>
+					<li><a th:href="@{/admin/personel-task/new}">Personele
+							Göre Ata </a></li>
+					<li><a th:href="@{/admin/personel-task/all}">Personel
+							Görevleri </a></li>
+					<li><a th:href="@{/myprofile/inf}">PROFİLİM </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div th:if="${mode == 'MODE_ALL'}">
+		<div class="container text-center" id="roleDiv">
+			<h3>Personel Types</h3>
+			<hr>
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered text-left">
+					<thead>
+						<tr>
+							<th>PersonelType Adi</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="role : ${roles}">
+							<td th:text="${role.role}"></td>
+
+							<td><a th:href="@{/admin/roles/update(id=${role.id})}"><span
+									class="glyphicon glyphicon-pencil"></span> EDIT</a></td>
+							<td><a th:href="@{/admin/roles/delete(id=${role.id})}"><span
+									class="glyphicon glyphicon-trash"></span> DELETE</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div th:if="${mode == 'MODE_UPDATE'}">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-2">
+					<form autocomplete="off" action="#"
+						th:action="@{/admin/roles/save}" th:object="${role}" method="post"
+						class="form-horizontal" role="form">
+						<h2>Edit Personel Type</h2>
+						<input type="hidden" name="id" th:field="${role.id}" />
+						<div class="form-group">
+							<label class="control-label col-lg-3">Type Adi</label>
+							<div class="col-md-4 text-left">
+								<input type="text" th:field="${role.role}" placeholder="Role"
+									class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-1 text-left">
+								<button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:if="${mode == 'MODE_NEW'}">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-2">
+					<form autocomplete="off" action="#"
+						th:action="@{/admin/roles/save}" th:object="${role}" method="post"
+						class="form-horizontal" role="form">
+						<label class="control-label col-lg-3"></label>
+						<h2>New Personel Type..</h2>
+						<div class="form-group">
+							<label class="control-label col-lg-3">Type Adi</label>
+							<div class="col-md-4 text-left"">
+								<input type="text" th:field="${role.role}"
+									placeholder="Role Name" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-1 text-left">
+								<button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/js/jquery-1.11.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/bootstrap-select.min.js"></script>
+</body>
+</html>

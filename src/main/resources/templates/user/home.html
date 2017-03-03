@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Admin Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+	
+	<form th:action="@{/logout}" method="get">
+		<button class="btn btn-md btn-danger btn-block" name="registration"
+			type="Submit">LOG OUT</button>
+	</form>
+
+	<div role="navigation">
+		<div class="navbar navbar-inverse">
+			<a href="/home" class="navbar-brand">Home Page</a>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/roles/new}">Yeni Personel Tipi</a></li>
+					<li><a th:href="@{/roles/all}">Tüm Personel
+							Tipleri</a></li>
+					<li><a th:href="@{/personels/all}">Tüm Personeller </a></li>
+					<li><a th:href="@{/tasks/new}">Yeni Görev </a></li>
+					<li><a th:href="@{/tasks/all}">Tüm Görevler </a></li>
+					<li><a th:href="@{/personel-task/new}">Personele Göre Ata
+					</a></li>
+					<li><a th:href="@{/personel-task/all}">Personel Görevleri</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+  
+		
+		<div class="panel-group" style="margin-top:40px">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<span th:utext="${userName}"></span>
+				</div>
+				<div class="panel-body">
+					<img th:src="@{/images/user.jpg}" class="img-responsive center-block" width="400" height="400" alt="Beer" /> 
+				</div>
+				<p class="admin-message-text text-center" th:utext="${userMessage}"></p>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
