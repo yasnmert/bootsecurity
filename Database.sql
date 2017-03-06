@@ -24,7 +24,6 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `role_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-<<<<<<< HEAD
   KEY `id_role_id` (`role_id`),
   CONSTRAINT `id_role_id` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8
@@ -39,18 +38,3 @@ CREATE TABLE `user_task` (
   CONSTRAINT `id_usertask_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_usertask_task_id` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-=======
-  KEY `FKn82ha3ccdebhokx3a8fgdqeyy` (`role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1
-
-CREATE TABLE `user_task` (
-	`id` int(11) not NULL AUTO_INCREMENT,
-  `personel_id` int(11)  NOT NULL,
-  `task_id` int(11)  NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_personeltask_personel_id` (`personel_id`),
-  KEY `id_personeltask_task_id` (`task_id`),
-  CONSTRAINT `id_personeltask_personel_id` FOREIGN KEY (`personel_id`) REFERENCES `personel` (`id`),
-  CONSTRAINT `id_personeltask_task_id` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
->>>>>>> origin/master
