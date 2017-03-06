@@ -2,10 +2,12 @@ package com.mert.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,16 +28,9 @@ public class Task implements Serializable {
 	private Date dateCreated;
 	private boolean finished;
 	
+	@OneToMany(mappedBy = "task")
+	private Set<UserTask> userTask = new HashSet<UserTask>();
 	
-	public Task(){}
-	
-	public Task(String name, String description, Date dateCreated, boolean finished) {
-		super();
-		this.name = name;
-		this.description = description;
-		this.dateCreated = dateCreated;
-		this.finished = finished;
-	}
 
 	public int getId() {
 		return id;
@@ -77,7 +72,14 @@ public class Task implements Serializable {
 		this.finished = finished;
 	}
 
-	
-	
+
+
+	public Set<UserTask> getUserTask() {
+		return userTask;
+	}
+
+	public void setUserTask(Set<UserTask> userTask) {
+		this.userTask = userTask;
+	}
 	
 }

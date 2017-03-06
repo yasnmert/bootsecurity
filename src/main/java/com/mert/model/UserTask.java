@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity(name="user_task")
 public class UserTask implements Serializable {
 	
@@ -21,10 +24,12 @@ public class UserTask implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ID")
 	private User user;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "TASK_ID")
     private Task task;
 
 	public int getId() {
@@ -35,6 +40,7 @@ public class UserTask implements Serializable {
 		this.id = id;
 	}
 
+
 	public User getUser() {
 		return user;
 	}
@@ -42,6 +48,7 @@ public class UserTask implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 
 	public Task getTask() {
 		return task;

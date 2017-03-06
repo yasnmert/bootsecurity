@@ -35,7 +35,6 @@ public class RoleController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView savePersonel_type(@Valid Role role, BindingResult bindingResult) {
-		System.out.println("aaaa "+role.getId()+" "+role.getRole());
 		roleService.save(role);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("rule", new Role());
