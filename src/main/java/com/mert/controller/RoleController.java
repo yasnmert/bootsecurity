@@ -1,6 +1,5 @@
 package com.mert.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class RoleController {
 	
 
 	@RequestMapping(value="/new", method = RequestMethod.GET)
-	public ModelAndView newpersonel_type(){
+	public ModelAndView newRole(){
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("role", new Role());
 		modelAndView.addObject("roles", roleService.findAll());
@@ -34,7 +33,7 @@ public class RoleController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView savePersonel_type(@Valid Role role, BindingResult bindingResult) {
+	public ModelAndView saveRole(@Valid Role role, BindingResult bindingResult) {
 		roleService.save(role);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("rule", new Role());
@@ -45,7 +44,7 @@ public class RoleController {
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public ModelAndView allPersonel_Type() {
+	public ModelAndView allRoles() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("rule", new Role());
 		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
@@ -56,7 +55,7 @@ public class RoleController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public ModelAndView updatePersonel_Type(@RequestParam int id) {
+	public ModelAndView updateRole(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("personel_type", new Role());
 		modelAndView.addObject("role", roleService.findRole(id));
@@ -66,7 +65,7 @@ public class RoleController {
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView deletePersonel_Type(@RequestParam int id) {
+	public ModelAndView deleteRole(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("personel_type", new Role());
 		roleService.delete(id);

@@ -2,12 +2,9 @@ package com.mert.controller;
 
 import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,16 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mert.service.TaskService;
-import com.mert.service.UserService;
 
 import com.mert.model.Task;
-import com.mert.model.User;
 
 @Controller
 @RequestMapping("/admin/tasks")
 public class TaskController {
 
-	
+
 	@Autowired
 	private TaskService taskService;
 
@@ -54,9 +49,6 @@ public class TaskController {
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ModelAndView allTasks() {
 		ModelAndView modelAndView = new ModelAndView();
-		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println(auth.getName());
-		//User user = userService.findUserByEmail(auth.getName());
 		modelAndView.addObject("task", new Task());
 		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
 		modelAndView.addObject("tasks", taskService.findAll());
@@ -74,7 +66,7 @@ public class TaskController {
 		modelAndView.setViewName("task");
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteTask(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView();

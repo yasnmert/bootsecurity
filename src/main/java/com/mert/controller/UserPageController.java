@@ -1,6 +1,5 @@
 package com.mert.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mert.model.Role;
 import com.mert.model.User;
-
-import com.mert.service.RoleServiceImpl;
-import com.mert.service.TaskService;
 import com.mert.service.UserServiceImpl;
 import com.mert.service.UserTaskService;
 
@@ -61,7 +56,6 @@ public class UserPageController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView updateProfile(@RequestParam int id) {
-		System.out.println(id+" hhhhhh");
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("rule", new User());
 		modelAndView.addObject("user", userService.findUser(id));
@@ -72,7 +66,7 @@ public class UserPageController {
 
 	
 	@RequestMapping(value = "/görevlerim", method = RequestMethod.GET)
-	public ModelAndView updatePersonel_Type(@RequestParam int id) {
+	public ModelAndView showMyTask(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("rule", new User());
 		modelAndView.addObject("user", userService.findUser(id));

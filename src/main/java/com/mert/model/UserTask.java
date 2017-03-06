@@ -24,12 +24,12 @@ public class UserTask implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "USER_ID")
+	@ManyToOne
+	@JoinColumn(name = "USER_ID", referencedColumnName = "id")
 	private User user;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "TASK_ID")
+	@ManyToOne
+	@JoinColumn(name = "TASK_ID", referencedColumnName = "id")
     private Task task;
 
 	public int getId() {
@@ -39,7 +39,6 @@ public class UserTask implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public User getUser() {
 		return user;
