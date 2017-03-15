@@ -33,18 +33,18 @@ public class User {
 	private int id;
 	
 	@Column(name = "email")
-	@Email(message = "*Geçerli bir e-mail adresi giriniz!")
-	@NotEmpty(message = "*Please provide an email")
+	@Email(message = "*Please enter a valid email adress!")
+	@NotEmpty(message = "*Please provide an email! This field can not be empty.")
 	private String email;
 	
 	@Column(name = "password")
 	@Length(min = 3, message = "*Şifreniz 3 karakterden az olamaz!")
-	@NotEmpty(message = "*Please provide your password")
+	@NotEmpty(message = "*Please provide your password! This field can not be empty.")
 	@Transient
 	
 	private String password;
 	@Column(name = "name")
-	@NotEmpty(message = "*Lütfen isminizi giriniz")
+	@NotEmpty(message = "*Please provide your name! This field can not be empty!")
 	private String name;
 	
 	@Column(name = "active")

@@ -3,6 +3,8 @@ package com.mert.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mert.service.RoleServiceImpl;
+import com.mert.service.UserService;
+import com.mert.service.UserServiceImpl;
 import com.mert.model.Role;
+import com.mert.model.User;
 
 @Controller
 @RequestMapping("/admin/roles")
@@ -35,11 +40,7 @@ public class RoleController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView saveRole(@Valid Role role, BindingResult bindingResult) {
 		roleService.save(role);
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("rule", new Role());
-		modelAndView.addObject("roles", roleService.findAll());
-		modelAndView.addObject("mode", "MODE_ALL");
-		modelAndView.setViewName("role");
+		ModelAndView modelAndView = new ModelAndView("redirect:/admin/roles/all");
 		return modelAndView;
 	}
 
@@ -66,12 +67,8 @@ public class RoleController {
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteRole(@RequestParam int id) {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("personel_type", new Role());
+		ModelAndView modelAndView = new ModelAndView("redirect:/admin/roles/all");
 		roleService.delete(id);
-		modelAndView.addObject("roles", roleService.findAll());
-		modelAndView.addObject("mode", "MODE_ALL");
-		modelAndView.setViewName("role");
 		return modelAndView;
 	}
 

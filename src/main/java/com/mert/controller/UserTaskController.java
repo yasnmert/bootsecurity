@@ -57,14 +57,8 @@ public class UserTaskController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView saveUserTask(@Valid UserTask userTask, BindingResult bindingResult) {
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView modelAndView = new ModelAndView("redirect:/admin/personel-task/all");
 		userTaskService.save(userTask);
-		modelAndView.addObject("rule", new UserTask());
-		modelAndView.addObject("user_tasks", userTaskService.findAll());
-		modelAndView.addObject("users", userServiceImpl.findAll());
-		modelAndView.addObject("tasks", taskService.findAll());
-		modelAndView.addObject("mode", "MODE_ALL");
-		modelAndView.setViewName("user_task");
 		return modelAndView;
 	}
 
@@ -82,14 +76,8 @@ public class UserTaskController {
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteUserTask(@RequestParam int id) {
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView modelAndView = new ModelAndView("redirect:/admin/personel-task/all");
 		userTaskService.delete(id);
-		modelAndView.addObject("rule", new UserTask());
-		modelAndView.addObject("user_tasks", userTaskService.findAll());
-		modelAndView.addObject("users", userServiceImpl.findAll());
-		modelAndView.addObject("tasks", taskService.findAll());
-		modelAndView.addObject("mode", "MODE_ALL");
-		modelAndView.setViewName("user_task");
 		return modelAndView;
 	}
 

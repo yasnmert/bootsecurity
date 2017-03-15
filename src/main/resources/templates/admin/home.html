@@ -13,19 +13,82 @@
 <body>
 	<div class="container">
 	
-	<form th:action="@{/logout}" method="get">
-		<button class="btn btn-md btn-danger btn-block" name="registration"
-			type="Submit">LOG OUT</button>
-	</form>
 
 	<div role="navigation">
-		<div class="navbar navbar-inverse">
+	<nav class="navbar navbar-dark red"
+		style="background-color: #B0F0F0;>
+  <div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
 			<a href="/home" class="navbar-brand">Home Page</a>
 		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a th:href="@{/personels/all}">Tüm Personeller </a></li>
+
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Personel Tipleri <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a th:href="@{/admin/roles/new}">Yeni Personel Tipi</a></li>
+						<li><a th:href="@{/admin/roles/all}">Tüm Personel Tipleri</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Görevler <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a th:href="@{/admin/tasks/new}">Yeni Görev </a></li>
+						<li><a th:href="@{/admin/tasks/all}">Tüm Görevler </a></li>
+					</ul></li>
+
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Personel-Görev Yönetimi <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a th:href="@{/admin/personel-task/new}">Personele
+								Göre Atama</a></li>
+						<li><a th:href="@{/admin/personel-task/all}">Personellerin
+								Görevleri </a></li>
+					</ul></li>
+
+
+			</ul>
+			<form class="navbar-form navbar-left">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search">
+				</div>
+				<button type="submit" class="btn btn-default">Search</button>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">PROFİLİM <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a th:href="@{/myprofile/inf}">Profilimi Görüntüle </a></li>
+						<li role="separator" class="divider"></li>
+						<li><a th:href="@{/logout}">Çıkış </a></li>
+					</ul></li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
 	</div>
   
 		
-		<div class="panel-group" style="margin-top:40px">
+		<div class="panel-group" style="margin-top:20px">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<span th:utext="${userName}"></span>

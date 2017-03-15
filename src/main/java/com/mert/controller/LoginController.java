@@ -13,12 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mert.model.User;
 import com.mert.service.UserService;
+import com.mert.service.UserServiceImpl;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserServiceImpl userServiceImpl;
 
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
 	public ModelAndView login(){
@@ -44,14 +48,14 @@ public class LoginController {
 		if (userExists != null) {
 			bindingResult
 					.rejectValue("email", "error.user",
-							"Bu e-mail Adresine Kayıtlı Bir Kullanıcı Bulunmaktadır."
-							+ " Lütfen bilgilerinizi kontrol ediniz!");
+							"Email has already been taken"
+							+ " Check your details!");
 		}
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");
 		} else {
 			userService.saveUser(user);
-			modelAndView.addObject("successMessage", "Kullanıcı Başarıyla Kaydedildi");
+			modelAndView.addObject("successMessage", "Registration Completed Successfully.");
 			modelAndView.addObject("user", new User());
 			modelAndView.setViewName("registration");
 			
@@ -88,7 +92,10 @@ public class LoginController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User control = userService.findUserByEmail(auth.getName());
 		modelAndView.addObject("control", control.getRole().getRole());//Authentication
+		modelAndView.addObject("userName", control.getName() + " "  + " (" + control.getEmail() + ")");
+		modelAndView.addObject("user", userServiceImpl.findUser(control.getId()));
 		modelAndView.setViewName("home");
 		return modelAndView;
 	}
+	
 }

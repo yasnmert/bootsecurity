@@ -12,30 +12,78 @@
 
 </head>
 <body>
-	<form th:action="@{/logout}" method="get">
-		<button class="btn btn-md btn-danger btn-block" name="registration"
-			type="Submit">LOG OUT</button>
-	</form>
+	<div class="container">
+		<nav class="navbar navbar-dark red"
+			style="background-color: #E0B880;>
+  <div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a href="/home" class="navbar-brand">Home Page</a>
+			</div>
 
-	<div role="navigation">
-		<div class="navbar navbar-inverse">
-			<a href="/home" class="navbar-brand">Home Page</a>
-			<div class="navbar-collapse collapse">
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a th:href="@{/admin/roles/new}">Yeni Personel Tipi</a></li>
-					<li><a th:href="@{/admin/roles/all}">Tüm Personel
-							Tipleri</a></li>
 					<li><a th:href="@{/personels/all}">Tüm Personeller </a></li>
-					<li><a th:href="@{/admin/tasks/new}">Yeni Görev </a></li>
-					<li><a th:href="@{/admin/tasks/all}">Tüm Görevler </a></li>
-					<li><a th:href="@{/admin/personel-task/new}">Personele Göre Ata
-					</a></li>
-					<li><a th:href="@{/admin/personel-task/all}">Personel Görevleri
-					</a></li>
-					<li><a th:href="@{/myprofile/inf}">PROFİLİM </a></li>
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Personel Tipleri <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/admin/roles/new}">Yeni Personel Tipi</a></li>
+							<li><a th:href="@{/admin/roles/all}">Tüm Personel
+									Tipleri</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Görevler <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/admin/tasks/new}">Yeni Görev </a></li>
+							<li><a th:href="@{/admin/tasks/all}">Tüm Görevler </a></li>
+						</ul></li>
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Personel-Görev Yönetimi <span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/admin/personel-task/new}">Personele
+									Göre Atama</a></li>
+							<li><a th:href="@{/admin/personel-task/all}">Personellerin
+									Görevleri </a></li>
+						</ul></li>
+
+
+				</ul>
+				<form class="navbar-form navbar-left">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Search</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">PROFİLİM <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/myprofile/inf}">Profilimi Görüntüle </a></li>
+							<li role="separator" class="divider"></li>
+							<li><a th:href="@{/logout}">Çıkış </a></li>
+						</ul></li>
 				</ul>
 			</div>
-		</div>
+			<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container-fluid -->
+	</nav>
 	</div>
 
 
@@ -57,9 +105,11 @@
 						<tr th:each="usertask : ${user_tasks}">
 							<td th:text="${usertask.user.name}"></td>
 							<td th:text="${usertask.task.name}"></td>
-							<td><a th:href="@{/admin/personel-task/update(id=${usertask.id})}"><span
+							<td><a
+								th:href="@{/admin/personel-task/update(id=${usertask.id})}"><span
 									class="glyphicon glyphicon-pencil"></span> EDIT</a></td>
-							<td><a th:href="@{/admin/personel-task/delete(id=${usertask.id})}"><span
+							<td><a
+								th:href="@{/admin/personel-task/delete(id=${usertask.id})}"><span
 									class="glyphicon glyphicon-trash"></span> DELETE</a></td>
 						</tr>
 					</tbody>
@@ -71,24 +121,28 @@
 	<div th:if="${mode == 'MODE_UPDATE'}">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 col-md-offset-2">
-					<form autocomplete="off" action="#"
-						th:action="@{/admin/personel-task/save}" action="#"
-						th:object="${user_task}" method="post" class="form-horizontal"
-						role="form">
-						<h2>Personelin Görevini Düzenle</h2>
+				<form autocomplete="off" action="#"
+					th:action="@{/admin/personel-task/save}" action="#"
+					th:object="${user_task}" method="post" class="form-horizontal"
+					role="form">
+					<fieldset>
+						<!-- Form Name -->
+						<legend>Personelin Görevini Düzenle</legend>
+						<!-- Text input-->
 						<input type="hidden" name="id" th:field="${user_task.id}" />
 
 						<div class="form-group">
-							<label class="control-label col-lg-3">Personelin Adı</label>
-							<div class="col-md-4 text-left">
-								<input type="text" th:field="${user_task.user}"
-									placeholder="user" class="form-control" />
+							<label class="col-md-4 control-label">Personelin Adı</label>
+							<div class="col-md-3 text-left">
+								<input type="hidden" th:field="${user_task.user.id}"
+									placeholder="user" class="form-control" /> <input type="text"
+									th:field="${user_task.user.name}" placeholder="user"
+									class="form-control" disabled />
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="control-label col-lg-3">Personelin Görevi</label>
+							<label class="col-md-4 control-label">Personelin Görevi</label>
 							<div class="col-md-4 text-left">
 								<select class="selectpicker" data-live-search="true"
 									title="Type Seçin" name="task" tabindex="-98">
@@ -98,14 +152,19 @@
 							</div>
 						</div>
 
+						<!-- Button (Double) -->
 						<div class="form-group">
-							<div class="col-md-2 text-left">
-								<button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+							<label class="col-md-4 control-label" for="submitButton"></label>
+							<div class="col-md-8">
+								<button type="submit" id="submitButton" name="submitButton"
+									class="btn btn-success">Save</button>
+								<button type="button" class="btn btn-inverse"
+									onclick="location.href='/admin/personel-task/all'">Cancel</button>
 							</div>
-						</div>
 
-					</form>
-				</div>
+						</div>
+					</fieldset>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -113,16 +172,17 @@
 	<div th:if="${mode == 'MODE_NEW'}">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 col-md-offset-2">
-					<form autocomplete="off" action="#"
-						th:action="@{/admin/personel-task/save}" action="#"
-						th:object="${user_task}" method="post" class="form-horizontal"
-						role="form">
-						<h2>PERSONELE GÖREV ATAMA</h2>
+				<form autocomplete="off" action="#"
+					th:action="@{/admin/personel-task/save}" action="#"
+					th:object="${user_task}" method="post" class="form-horizontal"
+					role="form">
+					<fieldset>
+						<!-- Form Name -->
+						<legend>Personele Görev Atama</legend>
+						<!-- Text input-->
 						<input type="hidden" name="id" th:field="${user_task.id}" />
-						
 						<div class="form-group">
-							<label class="control-label col-lg-3">Personel</label>
+							<label class="col-md-4 control-label">Personel</label>
 							<div class="col-md-4 text-left">
 								<select class="selectpicker" data-live-search="true"
 									title="Personel Seçin" name="user" tabindex="-98">
@@ -133,7 +193,7 @@
 						</div>
 
 						<div class="form-group">
-							<label class="control-label col-lg-3">Görevi</label>
+							<label class="col-md-4 control-label">Görev</label>
 							<div class="col-md-4 text-left">
 								<select class="selectpicker" data-live-search="true"
 									title="Görev Seçin" name="task" tabindex="-98">
@@ -143,20 +203,23 @@
 							</div>
 						</div>
 
-
-
+						<!-- Button (Double) -->
 						<div class="form-group">
-							<div class="col-md-2 text-left">
-								<button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+							<label class="col-md-4 control-label" for="submitButton"></label>
+							<div class="col-md-8">
+								<button type="submit" id="submitButton" name="submitButton"
+									class="btn btn-success">Save</button>
+								<button type="button" class="btn btn-inverse"
+									onclick="location.href='/admin/personel-task/all'">Cancel</button>
 							</div>
+
 						</div>
 
-					</form>
-				</div>
+					</fieldset>
+				</form>
 			</div>
 		</div>
 	</div>
-
 
 	<script src="/js/jquery-1.11.1.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

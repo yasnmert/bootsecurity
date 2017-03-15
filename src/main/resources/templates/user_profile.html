@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org" xmlns:t="http://www.thymeleaf.org">
+
 <head>
 <title>Görevli Personeller</title>
 
@@ -14,35 +15,83 @@
 </head>
 <body>
 
+	<div class="container">
+		<nav class="navbar navbar-dark red"
+			style="background-color: #E0B880;>
+  <div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a href="/home" class="navbar-brand">Home Page</a>
+			</div>
 
-	<form th:action="@{/logout}" method="get">
-		<button class="btn btn-md btn-danger btn-block" name="registration"
-			type="Submit">LOG OUT</button>
-	</form>
-
-	<div role="navigation">
-		<div class="navbar navbar-inverse">
-			<a href="/home" class="navbar-brand">Home Page</a>
-			<div class="navbar-collapse collapse">
-
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a th:href="@{/admin/roles/new}">Yeni Personel Tipi</a></li>
-					<li><a th:href="@{/admin/roles/all}">Tüm Personel
-							Tipleri</a></li>
 					<li><a th:href="@{/personels/all}">Tüm Personeller </a></li>
-					<li><a th:href="@{/admin/tasks/new}">Yeni Görev </a></li>
-					<li><a th:href="@{/admin/tasks/all}">Tüm Görevler </a></li>
-					<li><a th:href="@{/admin/personel-task/new}">Personele Göre Ata
-					</a></li>
-					<li><a th:href="@{/admin/personel-task/all}">Personel Görevleri
-					</a></li>
-					<li><a th:href="@{/myprofile/inf}">PROFİLİM </a></li>
+
+					<li th:if="${control == 'ADMIN'}" class="dropdown"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false">Personel Tipleri <span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/admin/roles/new}">Yeni Personel Tipi</a></li>
+							<li><a th:href="@{/admin/roles/all}">Tüm Personel
+									Tipleri</a></li>
+						</ul></li>
+					<li th:if="${control == 'ADMIN'}" class="dropdown"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false">Görevler <span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/admin/tasks/new}">Yeni Görev </a></li>
+							<li><a th:href="@{/admin/tasks/all}">Tüm Görevler </a></li>
+						</ul></li>
+
+					<li th:if="${control == 'ADMIN'}" class="dropdown"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false">Personel-Görev
+							Yönetimi <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/admin/personel-task/new}">Personele
+									Göre Atama</a></li>
+							<li><a th:href="@{/admin/personel-task/all}">Personellerin
+									Görevleri </a></li>
+						</ul></li>
+
 
 				</ul>
-
+				<form class="navbar-form navbar-left">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Search</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">PROFİLİM <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/myprofile/inf}">Profilimi Görüntüle </a></li>
+							<li role="separator" class="divider"></li>
+							<li><a th:href="@{/logout}">Çıkış </a></li>
+						</ul></li>
+				</ul>
 			</div>
-		</div>
+			<!-- /.navbar-collapse -->
 	</div>
+	<!-- /.container-fluid -->
+	</nav>
+	</div>
+
 	<div th:if="${mode == 'MODE_INF'}">
 		<div class="container">
 			<div class="row">
@@ -74,6 +123,7 @@
 									th:href="@{/myprofile/görevlerim(id=${user.id})}"><span
 									class="glyphicon glyphicon-list-alt"></span>GÖREVLERİM</a>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -130,7 +180,6 @@
 							<th>Görev Description</th>
 							<th>Görev Date-Created</th>
 							<th>Görev Durumu</th>
-							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -142,14 +191,55 @@
 							<td th:if="${tasks.user.id == user.id}"
 								th:text="${tasks.task.dateCreated}"></td>
 							<td th:if="${tasks.user.id == user.id}"
-								th:text="${tasks.task.finished}" ></td>
+								th:text="${tasks.task.finished}"></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
+	<div th:if="${mode == 'MODE_PASS'}">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-2">
+					<form autocomplete="off" action="#"
+						th:action="@{/myprofile/savepass_change}" th:object="${user}"
+						method="post" class="form-horizontal" role="form">
+						<h2>Edit PROFILE</h2>
+						<input type="hidden" name="id" th:field="${user.id}" />
+						<div class="form-group">
+							<label class="control-label col-lg-3">Old Password</label>
+							<div class="col-md-4 text-left">
+								<input type="password" th:field="${user.name}"
+									placeholder="Old Password" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-lg-3">New Password</label>
+							<div class="col-md-4 text-left">
+								<input type="password" th:field="${user.password}"
+									placeholder="Password" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-lg-3">Confirm Password</label>
+							<div class="col-md-4 text-left">
+								<input type="password" placeholder="Confirm Password"
+									class="form-control" />
+							</div>
+						</div>
 
+						<div class="form-group">
+							<div class="col-md-2 text-left">
+								<button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+							</div>
+						</div>
+						<p th:utext="${pw_success}"></p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src="/js/jquery-1.11.1.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/bootstrap-select.min.js"></script>
