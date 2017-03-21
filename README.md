@@ -21,4 +21,4 @@ BUILD and RUN
             spring.datasource.password = (your password)
             server.port = 9002 (server port for tomcat - localhost:9002 -> if you want to change server port, edit this line)
     4.Run the project
-            * open your browser go to -> http://localhost:9002 and HAVE FUN
+            * open your browser go to -> http://localhost:9002 and HAVE FUN 
