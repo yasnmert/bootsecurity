@@ -120,14 +120,21 @@ public class UserPageController {
 			modelAndView.addObject("control", control.getRole().getRole());//Authentication for NavBar
 			//---------------------------------------------
 			modelAndView.addObject("rule", new User());
-			modelAndView.addObject("pw_success", "Şifreler eşleşti");
+			modelAndView.addObject("process", "SUCCESS");
+			modelAndView.addObject("pw_success", "Well done! You successfully change your password.");
 			modelAndView.setViewName("user_profile");
 		}
 		else {
 			
 			modelAndView.addObject("user", userService.findUser(user.getId()));
 			modelAndView.addObject("mode", "MODE_PASS");
-			modelAndView.addObject("pw_error", "Error : Şifreler uyuşmuyor");
+			//--------------------------------------------
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			User control = userService.findUserByEmail(auth.getName());
+			modelAndView.addObject("control", control.getRole().getRole());//Authentication for NavBar
+			//---------------------------------------------
+			modelAndView.addObject("process", "ERROR");
+			modelAndView.addObject("pw_error", "Error : Check your old password!");
 			modelAndView.addObject("rule", new User());
 			modelAndView.setViewName("user_profile");
 			

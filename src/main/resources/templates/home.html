@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Registration Form</title>
+<title>Home</title>
 
 <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}" />
 <link rel="stylesheet" type="text/css"
@@ -38,15 +38,15 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a th:href="@{/personels/all}">All Personels</a></li>
+					<li><a th:href="@{/personels/all}">All Personnels</a></li>
 
 					<li th:if="${control == 'ADMIN'}" class="dropdown"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown" role="button"
-						aria-haspopup="true" aria-expanded="false">Personel Type <span
+						aria-haspopup="true" aria-expanded="false">Personnel Type <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/admin/roles/new}">New Personel Type</a></li>
-							<li><a th:href="@{/admin/roles/all}">All Personel Types</a></li>
+							<li><a th:href="@{/admin/roles/new}">New Personnel Type</a></li>
+							<li><a th:href="@{/admin/roles/all}">All Personnel Types</a></li>
 						</ul></li>
 					<li th:if="${control == 'ADMIN'}" class="dropdown"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -59,13 +59,13 @@
 
 					<li th:if="${control == 'ADMIN'}" class="dropdown"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown" role="button"
-						aria-haspopup="true" aria-expanded="false">Personel-Task
+						aria-haspopup="true" aria-expanded="false">Personnel-Task
 							Management <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a th:href="@{/admin/personel-task/new}">Task Assignment</a></li>
-							<li><a th:href="@{/admin/personel-task/all}">Personellerin
-									Görevleri </a></li>
+							<li><a th:href="@{/admin/personel-task/all}">Personnel
+									Tasks </a></li>
 						</ul></li>
 
 
@@ -97,8 +97,8 @@
 											</p>
 											<div class="divider"></div>
 											<a th:href="@{/myprofile/inf}"
-												class="btn btn-primary btn-sm active">Profilimi
-												Görüntüle</a>
+												class="btn btn-primary btn-sm active">View My Profile
+												</a>
 										</div>
 									</div>
 								</div>
@@ -107,11 +107,11 @@
 										<div class="row">
 											<div class="col-md-6">
 												<a th:href="@{/myprofile/change_password(id=${user.id})}" class="btn btn-default btn-sm">Change
-													Passowrd</a>
+													Password</a>
 											</div>
 											<div class="col-md-6">
 												<a th:href="@{/logout}"
-													class="btn btn-danger btn-sm pull-right">Sign Out</a>
+													class="btn btn-danger btn-sm pull-right"><span class="glyphicon glyphicon-off"></span> Sign Out</a>
 											</div>
 										</div>
 									</div>

@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>GÖREVLER</title>
+<title>Tasks</title>
 
 <link href="/css/bootselect.css" rel="stylesheet">
 <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -30,33 +30,32 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a th:href="@{/personels/all}">Tüm Personeller </a></li>
+					<li><a th:href="@{/personels/all}">All Personnels </a></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Personel Tipleri <span class="caret"></span></a>
+						aria-expanded="false">Personnel Types <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/admin/roles/new}">Yeni Personel Tipi</a></li>
-							<li><a th:href="@{/admin/roles/all}">Tüm Personel
-									Tipleri</a></li>
+							<li><a th:href="@{/admin/roles/new}">New Personnel Type</a></li>
+							<li><a th:href="@{/admin/roles/all}">All Personnel Types</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Görevler <span class="caret"></span></a>
+						aria-expanded="false">Tasks <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/admin/tasks/new}">Yeni Görev </a></li>
-							<li><a th:href="@{/admin/tasks/all}">Tüm Görevler </a></li>
+							<li><a th:href="@{/admin/tasks/new}">New Task </a></li>
+							<li><a th:href="@{/admin/tasks/all}">All Tasks </a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Personel-Görev Yönetimi <span
+						aria-expanded="false">>Personnel-Task Management <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/admin/personel-task/new}">Personele
-									Göre Atama</a></li>
-							<li><a th:href="@{/admin/personel-task/all}">Personellerin
-									Görevleri </a></li>
+							<li><a th:href="@{/admin/personel-task/new}">Task
+									Assignment</a></li>
+							<li><a th:href="@{/admin/personel-task/all}">Personnel
+									Tasks </a></li>
 						</ul></li>
 
 
@@ -70,11 +69,11 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">PROFİLİM <span class="caret"></span></a>
+						aria-expanded="false">My Profile <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/myprofile/inf}">Profilimi Görüntüle </a></li>
+							<li><a th:href="@{/myprofile/inf}">View My Profile </a></li>
 							<li role="separator" class="divider"></li>
-							<li><a th:href="@{/logout}">Çıkış </a></li>
+							<li><a th:href="@{/logout}">Sing out </a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -86,16 +85,16 @@
 
 	<div th:if="${mode == 'MODE_ALL'}">
 		<div class="container text-center" id="taskDiv">
-			<h3>GÖREVLER</h3>
+			<h3>TASKS</h3>
 			<hr>
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered text-left">
 					<thead>
 						<tr>
-							<th>Görev Adi</th>
-							<th>Görev Description</th>
-							<th>Görev Date-Created</th>
-							<th>Görev Durumu</th>
+							<th>Task Name</th>
+							<th>Task Description</th>
+							<th>Task Date-Created</th>
+							<th>Task Status(Finished)</th>
 							<th></th>
 							<th></th>
 							<th></th>
@@ -127,33 +126,35 @@
 					role="form">
 					<fieldset>
 						<!-- Form Name -->
-						<legend>Görevi Düzenle</legend>
+						<legend>Edit Task</legend>
 						<!-- Text input-->
 						<input type="hidden" name="id" th:field="${task.id}" />
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="textinput">Görevin
-								Adı</label>
+							<label class="col-md-4 control-label" for="textinput">Task
+								Name</label>
 							<div class="col-md-4">
 								<input type="text" th:field="${task.name}" placeholder="Name"
 									class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="textinput">Görevin Tanımı</label>
+							<label class="col-md-4 control-label" for="textinput">Task
+								Description</label>
 							<div class="col-md-4">
 								<input type="text" th:field="${task.description}"
 									placeholder="Description" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label">Görevin Durumu (Tamamlandı)</label>
+							<label class="col-md-4 control-label">Task Status
+								(Finished)</label>
 							<div class="col-md-4 text-left">
 								<input type="radio" class="col-sm-1" name="finished"
 									value="true" />
-								<div class="col-sm-2">Evet</div>
+								<div class="col-sm-2">Yes</div>
 								<input type="radio" class="col-md-1" name="finished"
 									value="false" />
-								<div class="col-sm-2">Hayir</div>
+								<div class="col-sm-2">No</div>
 							</div>
 
 						</div>
@@ -184,33 +185,34 @@
 					role="form">
 					<fieldset>
 						<!-- Form Name -->
-						<legend>Yeni Görev</legend>
+						<legend>New Task</legend>
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="textinput">Görevin
-								Adı</label>
+							<label class="col-md-4 control-label" for="textinput">Task
+								Name</label>
 							<div class="col-md-4">
 								<input type="text" th:field="${task.name}" placeholder="Name"
 									class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="textinput">Görevin
-								Tanımı</label>
+							<label class="col-md-4 control-label" for="textinput">Task
+								Description</label>
 							<div class="col-md-4">
 								<input type="text" th:field="${task.description}"
 									placeholder="Description" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label">Görevin Durumu (Tamamlandı)</label>
+							<label class="col-md-4 control-label">Task Status
+								(Finished)</label>
 							<div class="col-md-4 text-left">
 								<input type="radio" class="col-sm-1" name="finished"
 									value="true" />
-								<div class="col-sm-2">Evet</div>
+								<div class="col-sm-2">Yes</div>
 								<input type="radio" class="col-sm-1" name="finished"
 									value="false" checked />
-								<div class="col-sm-2">Hayir</div>
+								<div class="col-sm-2">No</div>
 							</div>
 
 						</div>
@@ -235,7 +237,7 @@
 	<div th:if="${mode == 'MODE_INF'}">
 
 		<div class="container text-center" id="taskDiv">
-			<h3>Göreve Atanan Personeller</h3>
+			<h3>Personnel Assigned to the Task</h3>
 			<hr>
 			<div class="table-responsive">
 
@@ -243,8 +245,8 @@
 
 					<thead>
 						<tr>
-							<th>Personel Adi</th>
-							<th>Personel Email Adresi</th>
+							<th>Personnel Name</th>
+							<th>Personnel Email</th>
 						</tr>
 					</thead>
 					<tbody>

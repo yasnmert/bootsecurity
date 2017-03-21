@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org" xmlns:t="http://www.thymeleaf.org">
 <head>
-<title>Görevli Personeller</title>
+<title>Task Assignment</title>
 
 
 
@@ -32,33 +32,33 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a th:href="@{/personels/all}">Tüm Personeller </a></li>
+					<li><a th:href="@{/personels/all}">All Personnels </a></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Personel Tipleri <span class="caret"></span></a>
+						aria-expanded="false">Personnel Types <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/admin/roles/new}">Yeni Personel Tipi</a></li>
-							<li><a th:href="@{/admin/roles/all}">Tüm Personel
-									Tipleri</a></li>
+							<li><a th:href="@{/admin/roles/new}">New Personnel Type</a></li>
+							<li><a th:href="@{/admin/roles/all}">All Personnel
+									Types</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Görevler <span class="caret"></span></a>
+						aria-expanded="false">Tasks <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/admin/tasks/new}">Yeni Görev </a></li>
-							<li><a th:href="@{/admin/tasks/all}">Tüm Görevler </a></li>
+							<li><a th:href="@{/admin/tasks/new}">New Task </a></li>
+							<li><a th:href="@{/admin/tasks/all}">All Tasks </a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Personel-Görev Yönetimi <span
+						aria-expanded="false">Personnel-Task
+							Management <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/admin/personel-task/new}">Personele
-									Göre Atama</a></li>
-							<li><a th:href="@{/admin/personel-task/all}">Personellerin
-									Görevleri </a></li>
+							<li><a th:href="@{/admin/personel-task/new}">Task Assignment</a></li>
+							<li><a th:href="@{/admin/personel-task/all}">Personnel
+									Tasks </a></li>
 						</ul></li>
 
 
@@ -72,11 +72,11 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">PROFİLİM <span class="caret"></span></a>
+						aria-expanded="false">My Profile <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/myprofile/inf}">Profilimi Görüntüle </a></li>
+							<li><a th:href="@{/myprofile/inf}">View My Profile</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a th:href="@{/logout}">Çıkış </a></li>
+							<li><a th:href="@{/logout}">Sign out </a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -89,14 +89,14 @@
 
 	<div th:if="${mode == 'MODE_ALL'}">
 		<div class="container text-center" id="personel_typeDiv">
-			<h3>Personellerin Görevleri</h3>
+			<h3>Personnel Tasks</h3>
 			<hr>
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered text-left">
 					<thead>
 						<tr>
-							<th>Personel Adi</th>
-							<th>Personel Görevi</th>
+							<th>Personnel Name</th>
+							<th>Personnel Task</th>
 							<th></th>
 							<th></th>
 						</tr>
@@ -127,12 +127,12 @@
 					role="form">
 					<fieldset>
 						<!-- Form Name -->
-						<legend>Personelin Görevini Düzenle</legend>
+						<legend>Edit Personnel Task</legend>
 						<!-- Text input-->
 						<input type="hidden" name="id" th:field="${user_task.id}" />
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Personelin Adı</label>
+							<label class="col-md-4 control-label">Personnel Name</label>
 							<div class="col-md-3 text-left">
 								<input type="hidden" th:field="${user_task.user.id}"
 									placeholder="user" class="form-control" /> <input type="text"
@@ -142,7 +142,7 @@
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Personelin Görevi</label>
+							<label class="col-md-4 control-label">Personnel Task</label>
 							<div class="col-md-4 text-left">
 								<select class="selectpicker" data-live-search="true"
 									title="Type Seçin" name="task" tabindex="-98">
@@ -178,14 +178,14 @@
 					role="form">
 					<fieldset>
 						<!-- Form Name -->
-						<legend>Personele Görev Atama</legend>
+						<legend>Personnel Task Assignment</legend>
 						<!-- Text input-->
 						<input type="hidden" name="id" th:field="${user_task.id}" />
 						<div class="form-group">
-							<label class="col-md-4 control-label">Personel</label>
+							<label class="col-md-4 control-label">Personnel</label>
 							<div class="col-md-4 text-left">
 								<select class="selectpicker" data-live-search="true"
-									title="Personel Seçin" name="user" tabindex="-98">
+									title="Select Personnel" name="user" tabindex="-98">
 									<option th:each="user: ${users}" th:value="${user.id}"
 										th:text="${user.name}"></option>
 								</select>
@@ -193,10 +193,10 @@
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Görev</label>
+							<label class="col-md-4 control-label">Task</label>
 							<div class="col-md-4 text-left">
 								<select class="selectpicker" data-live-search="true"
-									title="Görev Seçin" name="task" tabindex="-98">
+									title="Select Task" name="task" tabindex="-98">
 									<option th:each="task: ${tasks}" th:value="${task.id}"
 										th:text="${task.name}"></option>
 								</select>

@@ -38,7 +38,7 @@ public class User {
 	private String email;
 	
 	@Column(name = "password")
-	@Length(min = 3, message = "*Şifreniz 3 karakterden az olamaz!")
+	@Length(min = 3, message = "*Your password can not be less than 3 characters!")
 	@NotEmpty(message = "*Please provide your password! This field can not be empty.")
 	@Transient
 	
