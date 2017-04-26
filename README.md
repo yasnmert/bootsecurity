@@ -9,6 +9,7 @@ This project contains following tech stack;
            * JPA (Hibernate)
            * Thymeleaf
            * MySQL (5.7.11)
+           * Admin LTE template
            * Bootstrap (UI Presentation)
  
 BUILD and RUN
@@ -24,4 +25,54 @@ BUILD and RUN
             * open your browser go to -> http://localhost:9002 and HAVE FUN 
             
 APPLICATION SCREENSHOTS
+1)
 ![alt text](http://i.hizliresim.com/ALb8vL.png)
+
+
+2)
+![alt text](http://i.hizliresim.com/2rlWRA.png)
+
+
+3)
+![alt text](http://i.hizliresim.com/Ly686o.png)
+
+
+4)
+![alt text](http://i.hizliresim.com/W0P8P8.png)
+
+
+5)
+![alt text](http://i.hizliresim.com/R0v8vR.png)
+
+
+6)
+![alt text](http://i.hizliresim.com/gqGvg5.png)
+
+
+7)
+![alt text](http://i.hizliresim.com/V0787Z.png)
+
+
+8)
+![alt text](http://i.hizliresim.com/ojmq59.png)
+
+
+9)
+![alt text](http://i.hizliresim.com/7qLWJN.png)
+
+
+10)
+![alt text](http://i.hizliresim.com/5gvE0z.png)
+
+
+11)
+![alt text](http://i.hizliresim.com/JaG89J.png)
+
+
+12)
+![alt text](http://i.hizliresim.com/DPAWbo.png)
+
+
+13)
+![alt text](http://i.hizliresim.com/m3Dgy8.png)
+
