@@ -96,13 +96,6 @@ public class LoginController {
 	}
 
 
-	@RequestMapping(value="/login2", method = RequestMethod.GET)
-	public ModelAndView test2(){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("login2");
-		return modelAndView;
-	}
-
 	@RequestMapping(value="/home", method = RequestMethod.GET)
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
