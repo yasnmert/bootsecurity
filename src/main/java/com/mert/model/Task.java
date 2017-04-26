@@ -1,5 +1,8 @@
 package com.mert.model;
 
+/**
+ * Created by Yasin Mert on 25.02.2017.
+ */
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;

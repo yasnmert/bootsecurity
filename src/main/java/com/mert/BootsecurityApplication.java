@@ -1,5 +1,8 @@
 package com.mert;
 
+/**
+ * Created by Yasin Mert on 25.02.2017.
+ */
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

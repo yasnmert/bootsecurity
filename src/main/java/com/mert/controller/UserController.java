@@ -1,8 +1,12 @@
 package com.mert.controller;
 
+/**
+ * Created by Yasin Mert on 25.02.2017.
+ */
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,45 +18,42 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mert.model.User;
 
-import com.mert.service.RoleServiceImpl;
+import com.mert.service.RoleService;
 import com.mert.service.UserService;
-import com.mert.service.UserServiceImpl;
 
 @Controller
-@RequestMapping("/personels")
+@RequestMapping("/users")
 public class UserController {
 
 
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserService userService;
 
 	@Autowired
-	private RoleServiceImpl roleServiceImpl;
-	
-	@Autowired
-	private UserService userService;
+	private RoleService roleService;
+
+
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ModelAndView allUsers() {
 		ModelAndView modelAndView = new ModelAndView();
 		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
-		modelAndView.addObject("personels", userServiceImpl.findAll());
+		modelAndView.addObject("users", userService.findAll());
 		modelAndView.addObject("mode", "MODE_ALL");
-		//--------------------------------------------
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User control = userService.findUserByEmail(auth.getName());
-		modelAndView.addObject("control", control.getRole().getRole());//Authentication for NavBar
-		//---------------------------------------------
-		modelAndView.setViewName("personel");
+		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("control", getUser().getRole().getRole());
+		modelAndView.setViewName("user");
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView saveUser(@Valid User user, BindingResult bindingResult) {
-		ModelAndView modelAndView = new ModelAndView("redirect:/personels/all");
-		user.setPassword(userServiceImpl.findUser(user.getId()).getPassword());
-		user.setActive(userServiceImpl.findUser(user.getId()).getActive());
-		userServiceImpl.save(user);
+		ModelAndView modelAndView = new ModelAndView("redirect:/users/all");
+		user.setPassword(userService.findUser(user.getId()).getPassword());
+		user.setActive(userService.findUser(user.getId()).getActive());
+		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("control", getUser().getRole().getRole());
+		userService.save(user);
 		return modelAndView;
 	}
 
@@ -60,27 +61,29 @@ public class UserController {
 	public ModelAndView updateUser(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("rule", new User());
-		modelAndView.addObject("personel", userServiceImpl.findUser(id));
-		modelAndView.addObject("roles", roleServiceImpl.findAll());
+		modelAndView.addObject("user", userService.findUser(id));
+		modelAndView.addObject("roles", roleService.findAll());
 		modelAndView.addObject("mode", "MODE_UPDATE");
-		//--------------------------------------------
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User control = userService.findUserByEmail(auth.getName());
-		modelAndView.addObject("control", control.getRole().getRole());//Authentication for NavBar
-		//---------------------------------------------
-		modelAndView.setViewName("personel");
+		modelAndView.addObject("control", getUser().getRole().getRole());
+		modelAndView.setViewName("user");
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteUser(@RequestParam int id) {
-		ModelAndView modelAndView = new ModelAndView("redirect:/personels/all");
+		ModelAndView modelAndView = new ModelAndView("redirect:/users/all");
 		modelAndView.addObject("rule", new User());
-		userServiceImpl.delete(id);
+		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("control", getUser().getRole().getRole());
+		userService.delete(id);
 		return modelAndView;
 	}
 
-
+	private User getUser(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		return user;
+	}
 }
 
 

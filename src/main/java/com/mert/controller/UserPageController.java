@@ -1,5 +1,8 @@
 package com.mert.controller;
 
+/**
+ * Created by Yasin Mert on 25.02.2017.
+ */
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +11,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mert.model.User;
-import com.mert.service.UserServiceImpl;
+import com.mert.service.UserService;
 import com.mert.service.UserTaskService;
 
 @Controller
@@ -24,7 +26,7 @@ public class UserPageController {
 
 
 	@Autowired
-	private UserServiceImpl userService;
+	private UserService userService;
 
 	@Autowired
 	private UserTaskService userTaskService;
@@ -43,10 +45,8 @@ public class UserPageController {
 		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
 		modelAndView.addObject("user", userService.findUser(user.getId()));
 		modelAndView.addObject("mode", "MODE_INF");
-		//--------------------------------------------
 		User control = userService.findUserByEmail(auth.getName());
 		modelAndView.addObject("control", control.getRole().getRole());//Authentication for NavBar
-		//---------------------------------------------
 		modelAndView.setViewName("user_profile");
 		return modelAndView;
 	}
@@ -58,6 +58,8 @@ public class UserPageController {
 		user.setRole(userService.findUser(user.getId()).getRole());
 		user.setActive(userService.findUser(user.getId()).getActive());
 		userService.save(user);
+		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("control", getUser().getRole().getRole());
 		return modelAndView;
 	}
 
@@ -67,28 +69,20 @@ public class UserPageController {
 		modelAndView.addObject("rule", new User());
 		modelAndView.addObject("user", userService.findUser(id));
 		modelAndView.addObject("mode", "MODE_EDIT");
-		//--------------------------------------------
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User control = userService.findUserByEmail(auth.getName());
-		modelAndView.addObject("control", control.getRole().getRole());//Authentication for NavBar
-		//---------------------------------------------
+		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.setViewName("user_profile");
 		return modelAndView;
 	}
 
 
-	@RequestMapping(value = "/görevlerim", method = RequestMethod.GET)
+	@RequestMapping(value = "/mytasks", method = RequestMethod.GET)
 	public ModelAndView showMyTask(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("rule", new User());
 		modelAndView.addObject("user", userService.findUser(id));
-		modelAndView.addObject("usertasks", userTaskService.findAll());
+		modelAndView.addObject("usertasks", userTaskService.findByUser(userService.findUser(id)));
 		modelAndView.addObject("mode", "MODE_TASKS");
-		//--------------------------------------------
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User control = userService.findUserByEmail(auth.getName());
-		modelAndView.addObject("control", control.getRole().getRole());//Authentication for NavBar
-		//---------------------------------------------
+		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.setViewName("user_profile");
 		return modelAndView;
 	}
@@ -114,11 +108,7 @@ public class UserPageController {
 			userService.save(user);
 			modelAndView.addObject("user", userService.findUser(user.getId()));
 			modelAndView.addObject("mode", "MODE_PASS");
-			//--------------------------------------------
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			User control = userService.findUserByEmail(auth.getName());
-			modelAndView.addObject("control", control.getRole().getRole());//Authentication for NavBar
-			//---------------------------------------------
+			modelAndView.addObject("control", getUser().getRole().getRole());
 			modelAndView.addObject("rule", new User());
 			modelAndView.addObject("process", "SUCCESS");
 			modelAndView.addObject("pw_success", "Well done! You successfully change your password.");
@@ -128,11 +118,7 @@ public class UserPageController {
 			
 			modelAndView.addObject("user", userService.findUser(user.getId()));
 			modelAndView.addObject("mode", "MODE_PASS");
-			//--------------------------------------------
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			User control = userService.findUserByEmail(auth.getName());
-			modelAndView.addObject("control", control.getRole().getRole());//Authentication for NavBar
-			//---------------------------------------------
+			modelAndView.addObject("control", getUser().getRole().getRole());
 			modelAndView.addObject("process", "ERROR");
 			modelAndView.addObject("pw_error", "Error : Check your old password!");
 			modelAndView.addObject("rule", new User());
@@ -149,15 +135,16 @@ public class UserPageController {
 		modelAndView.addObject("rule", new User());
 		modelAndView.addObject("user", userService.findUser(id));
 		modelAndView.addObject("mode", "MODE_PASS");
-		//--------------------------------------------
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User control = userService.findUserByEmail(auth.getName());
-		modelAndView.addObject("control", control.getRole().getRole());//Authentication for NavBar
-		//---------------------------------------------
+		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.setViewName("user_profile");
 		return modelAndView;
 	}
 
+	private User getUser(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		return user;
+	}
 
 }
 

@@ -1,5 +1,8 @@
 package com.mert.configuration;
 
+/**
+ * Created by Yasin Mert on 25.02.2017.
+ */
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

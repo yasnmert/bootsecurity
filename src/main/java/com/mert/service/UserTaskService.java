@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.mert.model.Task;
+import com.mert.model.User;
 import org.springframework.stereotype.Service;
 
 import com.mert.repository.UserTaskRepository;
@@ -22,9 +24,7 @@ public class UserTaskService {
 	
 	public List<UserTask> findAll(){
 		List<UserTask> user_tasks = new ArrayList<>();
-		for(UserTask user_task : userTaskRepository.findAll()){
-			user_tasks.add(user_task);
-		}
+		user_tasks = userTaskRepository.findAll();
 		return user_tasks;
 	}
 	
@@ -39,5 +39,12 @@ public class UserTaskService {
 	public void delete(int id){
 		userTaskRepository.delete(id);
 
+	}
+
+	public List<UserTask> findByTask(Task task) {
+		return userTaskRepository.findByTask(task);
+	}
+	public List<UserTask> findByUser(User user) {
+		return userTaskRepository.findByUser(user);
 	}
 }

@@ -1,7 +1,12 @@
 package com.mert.controller;
 
+/**
+ * Created by Yasin Mert on 25.02.2017.
+ */
 import javax.validation.Valid;
 
+import com.mert.model.User;
+import com.mert.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,11 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mert.service.RoleServiceImpl;
-import com.mert.service.UserService;
-import com.mert.service.UserServiceImpl;
+import com.mert.service.RoleService;
 import com.mert.model.Role;
-import com.mert.model.User;
 
 @Controller
 @RequestMapping("/admin/roles")
@@ -24,14 +26,18 @@ public class RoleController {
 
 
 	@Autowired
-	private RoleServiceImpl roleService;
-	
+	private RoleService roleService;
+
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value="/new", method = RequestMethod.GET)
 	public ModelAndView newRole(){
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("role", new Role());
 		modelAndView.addObject("roles", roleService.findAll());
+		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_NEW");
 		modelAndView.setViewName("role");
 		return modelAndView;
@@ -41,6 +47,8 @@ public class RoleController {
 	public ModelAndView saveRole(@Valid Role role, BindingResult bindingResult) {
 		roleService.save(role);
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/roles/all");
+		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("control", getUser().getRole().getRole());
 		return modelAndView;
 	}
 
@@ -50,6 +58,8 @@ public class RoleController {
 		modelAndView.addObject("rule", new Role());
 		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
 		modelAndView.addObject("roles", roleService.findAll());
+		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_ALL");
 		modelAndView.setViewName("role");
 		return modelAndView;
@@ -60,6 +70,8 @@ public class RoleController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("personel_type", new Role());
 		modelAndView.addObject("role", roleService.findRole(id));
+		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_UPDATE");
 		modelAndView.setViewName("role");
 		return modelAndView;
@@ -68,8 +80,15 @@ public class RoleController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteRole(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/roles/all");
+		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("control", getUser().getRole().getRole());
 		roleService.delete(id);
 		return modelAndView;
 	}
 
+	private User getUser(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		return user;
+	}
 }
