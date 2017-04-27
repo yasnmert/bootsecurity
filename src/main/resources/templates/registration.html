@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>App MERT | Registration</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/registration.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/test.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Website CSS style -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Website Font style -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Passion+One'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oxygen'
+	rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div class="container">
+		<div class="row main">
+			<div class="main-login main-center">
+
+				<form autocomplete="off" action="#" th:action="@{/registration}"
+					th:object="${user}" method="post" class="form-horizontal"
+					role="form">
+					<fieldset>
+						<!-- Form Name -->
+						<legend>Create your account</legend>
+						<!-- Text input-->
+
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label"></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa"
+										aria-hidden="true"></i></span> <input type="text" th:field="*{name}"
+										placeholder="Name" class="form-control" />
+								</div>
+								<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+									class="validation-message"></label>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label"> </label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
+										type="text" th:field="*{email}" placeholder="Email"
+										class="form-control" />
+								</div>
+								<label th:if="${#fields.hasErrors('email')}"
+									th:errors="*{email}" class="validation-message"></label>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label"></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
+										type="password" th:field="*{password}" placeholder="Password"
+										class="form-control" />
+								</div>
+								<label th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}" class="validation-message"></label>
+							</div>
+						</div>
+
+
+						<span style="color: green; font-weight: bold"
+							th:utext="${successMessage}"></span>
+
+						<div class="form-group">
+							<input type="submit" class="btn btn-lg btn-primary btn-block"
+								name="Submit" value="Register">
+						</div>
+					</fieldset>
+				</form>
+				<div class="panel-footer ">
+					Already have an account? <a th:href="@{/login}" onClick="">
+						Login </a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>
