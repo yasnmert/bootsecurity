@@ -25,6 +25,7 @@ BUILD and RUN
             * open your browser go to -> http://localhost:9002 and HAVE FUN 
             
 APPLICATION SCREENSHOTS
+
 1)
 ![alt text](http://i.hizliresim.com/ALb8vL.png)
 
@@ -54,7 +55,7 @@ APPLICATION SCREENSHOTS
 
 
 8)
-![alt text](http://i.hizliresim.com/ojmq59.png)
+![alt text](http://i.hizliresim.com/ZZqmA3.png)
 
 
 9)
