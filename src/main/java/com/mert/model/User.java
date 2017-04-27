@@ -31,12 +31,12 @@ public class User {
 	
 	@Column(name = "email")
 	@Email(message = "*Please enter a valid email adress!")
-	@NotEmpty(message = "*Please provide an email! This field can not be empty.")
+	@NotEmpty(message = "*Please provide an email! This field can not be empty!")
 	private String email;
 	
 	@Column(name = "password")
 	@Length(min = 3, message = "*Your password can not be less than 3 characters!")
-	@NotEmpty(message = "*Please provide your password! This field can not be empty.")
+	@NotEmpty(message = "*Please provide your password! This field can not be empty!")
 	@Transient
 	
 	private String password;
