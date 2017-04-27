@@ -285,9 +285,14 @@
                                     <label class="col-md-4 control-label">User Type</label>
                                     <div class="col-md-4 text-left">
                                         <select class="selectpicker" data-live-search="true"
-                                                th:title="${user.role.role}" name="role" tabindex="-98">
+                                              name="role" tabindex="-98">
+
                                             <option th:each="role: ${roles}" th:value="${role.id}"
-                                                    th:text="${role.role}"></option>
+                                                    th:if="${user.role.id} == ${role.id}" selected="selected"  th:text="${role.role}">
+                                            <option th:each="role: ${roles}" th:value="${role.id}"
+                                                    th:if="${user.role.id} != ${role.id}"   th:text="${role.role}">
+
+                                            </option>
                                         </select>
                                     </div>
                                 </div>

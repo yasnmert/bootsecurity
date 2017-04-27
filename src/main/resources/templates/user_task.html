@@ -273,8 +273,9 @@
                                                 th:title="${user_task.task.name}" name="task" tabindex="-98">
 
                                             <option th:each="task: ${tasks}" th:value="${task.id}"
-
-                                                    th:text="${task.name}"></option>
+                                                    th:if="${user_task.task.id} == ${task.id}" selected="selected"  th:text="${task.name}"></option>
+                                            <option th:each="task: ${tasks}" th:value="${task.id}"
+                                                    th:if="${user_task.task.id} != ${task.id}"  th:text="${task.name}"></option>
                                         </select>
                                     </div>
                                 </div>
