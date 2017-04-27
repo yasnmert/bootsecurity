@@ -41,7 +41,7 @@ public class UserTaskController {
 		modelAndView.addObject("user_task", new UserTask());
 		modelAndView.addObject("users", userService.findAll());
 		modelAndView.addObject("tasks", taskService.findAll());
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_NEW");
 		modelAndView.setViewName("user_task");
@@ -55,7 +55,7 @@ public class UserTaskController {
 		modelAndView.addObject("user_tasks", userTaskService.findAll());
 		modelAndView.addObject("users", userService.findAll());
 		modelAndView.addObject("tasks", taskService.findAll());
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_ALL");
 		modelAndView.setViewName("user_task");
@@ -65,7 +65,7 @@ public class UserTaskController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView saveUserTask(@Valid UserTask userTask, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user-task/all");
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		userTaskService.save(userTask);
 		return modelAndView;
@@ -78,7 +78,7 @@ public class UserTaskController {
 		modelAndView.addObject("user_task", userTaskService.findUserTask(id));
 		modelAndView.addObject("users", userService.findAll());
 		modelAndView.addObject("tasks", taskService.findAll());
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_UPDATE");
 		modelAndView.setViewName("user_task");
@@ -88,7 +88,7 @@ public class UserTaskController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteUserTask(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user-task/all");
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		userTaskService.delete(id);
 		return modelAndView;

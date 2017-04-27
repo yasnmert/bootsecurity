@@ -18,7 +18,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mert.model.User;
@@ -119,7 +118,7 @@ public class LoginController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User loginUser = userService.findUserByEmail(auth.getName());
 		modelAndView.addObject("control", loginUser.getRole().getRole());//Authentication for NavBar
-		modelAndView.addObject("user", loginUser);
+		modelAndView.addObject("auth", loginUser);
 		List<UserTask> userTasks = new ArrayList<>();
 		userTasks = userTaskService.findByUser(loginUser);
 		modelAndView.addObject("userTaskSize", userTasks.size());

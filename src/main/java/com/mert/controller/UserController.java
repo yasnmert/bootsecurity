@@ -40,7 +40,7 @@ public class UserController {
 		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
 		modelAndView.addObject("users", userService.findAll());
 		modelAndView.addObject("mode", "MODE_ALL");
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.setViewName("user");
 		return modelAndView;
@@ -51,7 +51,7 @@ public class UserController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/users/all");
 		user.setPassword(userService.findUser(user.getId()).getPassword());
 		user.setActive(userService.findUser(user.getId()).getActive());
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		userService.save(user);
 		return modelAndView;
@@ -64,6 +64,7 @@ public class UserController {
 		modelAndView.addObject("user", userService.findUser(id));
 		modelAndView.addObject("roles", roleService.findAll());
 		modelAndView.addObject("mode", "MODE_UPDATE");
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.setViewName("user");
 		return modelAndView;
@@ -73,7 +74,7 @@ public class UserController {
 	public ModelAndView deleteUser(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/users/all");
 		modelAndView.addObject("rule", new User());
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		userService.delete(id);
 		return modelAndView;

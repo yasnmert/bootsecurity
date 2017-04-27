@@ -41,7 +41,7 @@ public class TaskController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("task", new Task());
 		modelAndView.addObject("tasks", taskService.findAll());
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_NEW");
 		modelAndView.setViewName("task");
@@ -53,7 +53,7 @@ public class TaskController {
 		task.setDateCreated(new Date());
 		taskService.save(task);
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/tasks/all");
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		return modelAndView;
 	}
@@ -64,7 +64,7 @@ public class TaskController {
 		modelAndView.addObject("rule", new Task());
 		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
 		modelAndView.addObject("tasks", taskService.findAll());
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_ALL");
 		modelAndView.setViewName("task");
@@ -76,7 +76,7 @@ public class TaskController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("rule", new Task());
 		modelAndView.addObject("task", taskService.findTask(id));
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control",getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_UPDATE");
 		modelAndView.setViewName("task");
@@ -87,7 +87,7 @@ public class TaskController {
 	public ModelAndView deleteTask(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/tasks/all");
 		modelAndView.addObject("rule", new Task());
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		taskService.delete(id);
 		return modelAndView;
@@ -99,7 +99,7 @@ public class TaskController {
 		modelAndView.addObject("rule", new Task());
 		modelAndView.addObject("task", taskService.findTask(id));
 		modelAndView.addObject("usertasks", userTaskService.findByTask(taskService.findTask(id)));
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_INF");
 		modelAndView.setViewName("task");

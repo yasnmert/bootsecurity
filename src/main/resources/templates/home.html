@@ -41,7 +41,7 @@
 			<!-- mini logo for sidebar mini 50x50 pixels -->
 			<span class="logo-mini"><b>M</b>RT</span>
 			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg" th:utext="${user.role.role}"> </span>
+			<span class="logo-lg" th:utext="${auth.role.role}"> </span>
 
 		</a>
 		<!-- Header Navbar: style can be found in header.less -->
@@ -60,7 +60,7 @@
 					<li class="dropdown user user-menu">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<img src="/images/avatar5.png" class="user-image" alt="User Image">
-							<span class="hidden-xs" th:utext="${user.name}"></span>
+							<span class="hidden-xs" th:utext="${auth.name}"></span>
 						</a>
 						<ul class="dropdown-menu">
 							<!-- User image -->
@@ -68,8 +68,8 @@
 								<img src="/images/avatar5.png" class="img-circle" alt="User Image">
 
 								<p>
-									<span class="hidden-xs" th:utext="${user.name}"></span>
-									<small><span class="hidden-xs" th:utext="${user.email}"></span></small>
+									<span class="hidden-xs" th:utext="${auth.name}"></span>
+									<small><span class="hidden-xs" th:utext="${auth.email}"></span></small>
 								</p>
 							</li>
 							<!-- Menu Body --
@@ -79,7 +79,7 @@
 									<a th:href="@{/myprofile/inf}" class="btn btn-primary btn-flat">Profile</a>
 								</div>
 								<div class="col-xs-offset-1 col-xs-4 text-center">
-									<a  th:href="@{/myprofile/change_password(id=${user.id})}"><i class="fa fa-gears"></i> Change
+									<a  th:href="@{/myprofile/change_password(id=${auth.id})}"><i class="fa fa-gears"></i> Change
 										Password</a>
 								</div>
 								<div class="pull-right">
@@ -102,7 +102,7 @@
 					<img src="/images/avatar5.png" class="img-circle" alt="User Image">
 				</div>
 				<div class="pull-left info">
-					<p><span class="hidden-xs" th:utext="${user.name}"></span></p>
+					<p><span class="hidden-xs" th:utext="${auth.name}"></span></p>
 				</div>
 			</div>
 			<!-- search form -->
@@ -127,7 +127,7 @@
 					</a>
 				</li>
 				<li th:if="${control != 'ADMIN'}" class="treeview">
-					<a th:href="@{/myprofile/mytasks(id=${user.id})}">
+					<a th:href="@{/myprofile/mytasks(id=${auth.id})}">
 						<i class="fa fa-file-text text-green"></i> <span>My Tasks</span>
 						<span class="pull-right-container">
             </span>
@@ -257,7 +257,7 @@
 
 			<div class="row">
 				<div class="col-lg-offset-3 col-lg-4 col-xs-6">
-					<h2 class="headline text-black"> WELCOME <span class="hidden-xs" th:utext="${user.name}"></span></h2>
+					<h2 class="headline text-black"> WELCOME <span class="hidden-xs" th:utext="${auth.name}"></span></h2>
 					<!-- /.error-content -->
 				</div>
 			</div>
@@ -268,8 +268,8 @@
 					<div class="box box-widget widget-user">
 						<!-- Add the bg color to the header using any of the bg-* classes -->
 						<div class="widget-user-header bg-purple-active">
-							<h3 class="widget-user-username"> <span class="hidden-xs" th:utext="${user.name}"></span></h3>
-							<h5 class="widget-user-desc"> <span class="hidden-xs" th:utext="${user.role.role}"></span></h5>
+							<h3 class="widget-user-username"> <span class="hidden-xs" th:utext="${auth.name}"></span></h3>
+							<h5 class="widget-user-desc"> <span class="hidden-xs" th:utext="${auth.role.role}"></span></h5>
 						</div>
 						<div class="widget-user-image">
 							<img class="img-circle" src="/images/avatar5.png" alt="User Avatar">

@@ -46,6 +46,7 @@ public class UserPageController {
 		modelAndView.addObject("user", userService.findUser(user.getId()));
 		modelAndView.addObject("mode", "MODE_INF");
 		User control = userService.findUserByEmail(auth.getName());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", control.getRole().getRole());//Authentication for NavBar
 		modelAndView.setViewName("user_profile");
 		return modelAndView;
@@ -58,7 +59,7 @@ public class UserPageController {
 		user.setRole(userService.findUser(user.getId()).getRole());
 		user.setActive(userService.findUser(user.getId()).getActive());
 		userService.save(user);
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		return modelAndView;
 	}
@@ -69,6 +70,7 @@ public class UserPageController {
 		modelAndView.addObject("rule", new User());
 		modelAndView.addObject("user", userService.findUser(id));
 		modelAndView.addObject("mode", "MODE_EDIT");
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.setViewName("user_profile");
 		return modelAndView;
@@ -82,6 +84,7 @@ public class UserPageController {
 		modelAndView.addObject("user", userService.findUser(id));
 		modelAndView.addObject("usertasks", userTaskService.findByUser(userService.findUser(id)));
 		modelAndView.addObject("mode", "MODE_TASKS");
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.setViewName("user_profile");
 		return modelAndView;
@@ -108,6 +111,7 @@ public class UserPageController {
 			userService.save(user);
 			modelAndView.addObject("user", userService.findUser(user.getId()));
 			modelAndView.addObject("mode", "MODE_PASS");
+			modelAndView.addObject("auth", getUser());
 			modelAndView.addObject("control", getUser().getRole().getRole());
 			modelAndView.addObject("rule", new User());
 			modelAndView.addObject("process", "SUCCESS");
@@ -118,6 +122,7 @@ public class UserPageController {
 			
 			modelAndView.addObject("user", userService.findUser(user.getId()));
 			modelAndView.addObject("mode", "MODE_PASS");
+			modelAndView.addObject("auth", getUser());
 			modelAndView.addObject("control", getUser().getRole().getRole());
 			modelAndView.addObject("process", "ERROR");
 			modelAndView.addObject("pw_error", "Error : Check your old password!");
@@ -135,6 +140,7 @@ public class UserPageController {
 		modelAndView.addObject("rule", new User());
 		modelAndView.addObject("user", userService.findUser(id));
 		modelAndView.addObject("mode", "MODE_PASS");
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.setViewName("user_profile");
 		return modelAndView;

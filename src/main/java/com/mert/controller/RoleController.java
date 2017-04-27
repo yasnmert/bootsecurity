@@ -36,7 +36,7 @@ public class RoleController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("role", new Role());
 		modelAndView.addObject("roles", roleService.findAll());
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_NEW");
 		modelAndView.setViewName("role");
@@ -47,7 +47,7 @@ public class RoleController {
 	public ModelAndView saveRole(@Valid Role role, BindingResult bindingResult) {
 		roleService.save(role);
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/roles/all");
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		return modelAndView;
 	}
@@ -58,7 +58,7 @@ public class RoleController {
 		modelAndView.addObject("rule", new Role());
 		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
 		modelAndView.addObject("roles", roleService.findAll());
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_ALL");
 		modelAndView.setViewName("role");
@@ -70,7 +70,7 @@ public class RoleController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("personel_type", new Role());
 		modelAndView.addObject("role", roleService.findRole(id));
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		modelAndView.addObject("mode", "MODE_UPDATE");
 		modelAndView.setViewName("role");
@@ -80,7 +80,7 @@ public class RoleController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteRole(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/roles/all");
-		modelAndView.addObject("user", getUser());
+		modelAndView.addObject("auth", getUser());
 		modelAndView.addObject("control", getUser().getRole().getRole());
 		roleService.delete(id);
 		return modelAndView;
