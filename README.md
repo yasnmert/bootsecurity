@@ -28,6 +28,7 @@ APPLICATION SCREENSHOTS
 
 1)
 ![alt text](http://i.hizliresim.com/ALb8vL.png)
+![alt text](http://i.hizliresim.com/ALb8vL.png)
 
 
 2)
