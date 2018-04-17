@@ -27,6 +27,9 @@ BUILD and RUN
 APPLICATION SCREENSHOTS
 
 1)
+<br>
+<img height = "700" src="http://i.hizliresim.com/ALb8vL.png" />
+<br>
 ![img](http://i.hizliresim.com/ALb8vL.png)
 
 
