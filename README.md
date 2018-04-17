@@ -27,7 +27,7 @@ BUILD and RUN
 APPLICATION SCREENSHOTS
 
 1)
-![alt tag](http://i.hizliresim.com/ALb8vL.png)
+![img](http://i.hizliresim.com/ALb8vL.png)
 
 
 2)
