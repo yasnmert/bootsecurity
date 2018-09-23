@@ -31,49 +31,49 @@ APPLICATION SCREENSHOTS
 
 
 2)
-![alt text](http://i.hizliresim.com/2rlWRA.png)
+![image2](https://user-images.githubusercontent.com/13044209/45927279-9c3bb580-bf39-11e8-8d4c-3818c278f827.png)
 
 
 3)
-![alt text](http://i.hizliresim.com/Ly686o.png)
+![image3](https://user-images.githubusercontent.com/13044209/45927276-97770180-bf39-11e8-971e-8bf5cdc7117f.png)
 
 
 4)
-![alt text](http://i.hizliresim.com/W0P8P8.png)
+![image4](https://user-images.githubusercontent.com/13044209/45927298-fd638900-bf39-11e8-9c23-3489f7e17343.png)
 
 
 5)
-![alt text](http://i.hizliresim.com/R0v8vR.png)
+![image5](https://user-images.githubusercontent.com/13044209/45927299-fe94b600-bf39-11e8-86ed-3074e1c6335e.png)
 
 
 6)
-![alt text](http://i.hizliresim.com/gqGvg5.png)
+![image6](https://user-images.githubusercontent.com/13044209/45927300-ffc5e300-bf39-11e8-8d3a-7444d5ce961f.png)
 
 
 7)
-![alt text](http://i.hizliresim.com/V0787Z.png)
+![image7](https://user-images.githubusercontent.com/13044209/45927301-00f71000-bf3a-11e8-8bf2-9a291576ae21.png)
 
 
 8)
-![alt text](http://i.hizliresim.com/ZZqmA3.png)
+![image8](https://user-images.githubusercontent.com/13044209/45927302-018fa680-bf3a-11e8-94c2-07ee7bafe2be.png)
 
 
 9)
-![alt text](http://i.hizliresim.com/7qLWJN.png)
+![image9](https://user-images.githubusercontent.com/13044209/45927336-5df2c600-bf3a-11e8-9bff-35b3817a5626.png)
 
 
 10)
-![alt text](http://i.hizliresim.com/5gvE0z.png)
+![image10](https://user-images.githubusercontent.com/13044209/45927337-5f23f300-bf3a-11e8-80f9-6c6813ca0be7.png)
 
 
 11)
-![alt text](http://i.hizliresim.com/JaG89J.png)
+![image11](https://user-images.githubusercontent.com/13044209/45927339-5fbc8980-bf3a-11e8-8b44-8d72a2d5e628.png)
 
 
 12)
-![alt text](http://i.hizliresim.com/DPAWbo.png)
+![image12](https://user-images.githubusercontent.com/13044209/45927340-60edb680-bf3a-11e8-925a-6968d1a3ff53.png)
 
 
 13)
-![alt text](http://i.hizliresim.com/m3Dgy8.png)
+![image13](https://user-images.githubusercontent.com/13044209/45927341-61864d00-bf3a-11e8-8ca8-2207e212fb2a.png)
 
